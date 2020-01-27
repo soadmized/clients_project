@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+import datetime
 
 # Create your models here.
 
@@ -7,8 +9,13 @@ class Client(models.Model):
 
     first = models.CharField(max_length=250)
     last = models.CharField(max_length=250)
-    age = models.IntegerField()
+    birth = models.DateField(default='1970-01-01')
+    age = models.PositiveSmallIntegerField()
+
     #image = models.ImageField(blank=True, upload_to='/images')
 
     def __str__(self):
         return '{0} {1}'.format(self.first, self.last)
+
+    def get_absolute_url(self):
+        return reverse('client_detail', args=[str(self.id)])

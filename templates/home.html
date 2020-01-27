@@ -3,8 +3,8 @@
     {% block content %}
         {% for client in object_list %}
             <div class="post-entry">
-            <h3><a href="">{{ client.first }} {{ client.last }}</a></h3>
-                <p>Age: {{ client.age }}</p>
+            <h2><a href="{% url 'client_detail' client.pk %}">{{ client.first }} {{ client.last }}</a></h2>
+                <h3><a href="{% url 'edit_client' client.pk %}">Edit</a>     <a href="{% url 'delete_client' client.pk %}">Delete</a></h3>
             </div>
         {% endfor %}
     {% endblock content %}
