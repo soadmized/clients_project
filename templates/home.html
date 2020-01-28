@@ -1,6 +1,10 @@
 <!-- templates/home.html -->
 {% extends 'base.html' %}
     {% block content %}
+    <form action="" method="get">
+        {{ form.as_p }}
+        <input type="submit" value="Search" />
+    </form>
         {% for client in object_list %}
             <div class="post-entry">
             <h2><a href="{% url 'client_detail' client.pk %}">{{ client.first }} {{ client.last }}</a></h2>

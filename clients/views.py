@@ -2,10 +2,13 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Client
 from django.urls import reverse_lazy
+from .forms import ClientsFilterForm
 
 
 class ClientListView(ListView):
     model = Client
+    form = ClientsFilterForm()
+
     template_name = 'home.html'
 
 
