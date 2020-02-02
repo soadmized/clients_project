@@ -9,7 +9,7 @@ class Client(models.Model):
 
     first = models.CharField(max_length=250)
     last = models.CharField(max_length=250)
-    birth = models.DateField(default='1970-01-01')
+    birth = models.DateField(blank=True, null=True)
     age = models.PositiveSmallIntegerField()
 
     image = models.ImageField(blank=True, upload_to='static/images/clients/%Y/%m/%d', help_text='150x150px', verbose_name='Ссылка картинки')
