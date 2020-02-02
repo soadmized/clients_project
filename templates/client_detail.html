@@ -2,6 +2,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="post-entry">
+    <img src="{{ client.image }}">
 <h2>{{ client.first }} {{ client.last }}</h2>
 <p>Date of birth: {{ client.birth }}</p>
 <p>Age: {{ client.age }}</p>

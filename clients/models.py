@@ -12,7 +12,7 @@ class Client(models.Model):
     birth = models.DateField(default='1970-01-01')
     age = models.PositiveSmallIntegerField()
 
-    #image = models.ImageField(blank=True, upload_to='/images')
+    image = models.ImageField(blank=True, upload_to='static/images/clients/%Y/%m/%d', help_text='150x150px', verbose_name='Ссылка картинки')
 
     def __str__(self):
         return '{0} {1}'.format(self.first, self.last)
