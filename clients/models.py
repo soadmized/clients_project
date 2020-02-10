@@ -1,8 +1,5 @@
 from django.db import models
 from django.urls import reverse
-import datetime
-
-# Create your models here.
 
 
 class Client(models.Model):
@@ -19,3 +16,6 @@ class Client(models.Model):
 
     def get_absolute_url(self):
         return reverse('client_detail', args=[str(self.id)])
+
+    class Meta:
+        ordering = ['last']

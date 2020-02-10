@@ -2,14 +2,17 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Client
 from django.urls import reverse_lazy
-from .forms import ClientsFilterForm
+from .filters import ClientsFilter
 
 
 class ClientListView(ListView):
     model = Client
-    form = ClientsFilterForm()
-
     template_name = 'home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = ClientsFilter(self.request.GET, queryset=self.get_queryset())
+        return context
 
 
 class ClientDetailView(DetailView):

@@ -1,11 +1,12 @@
 <!-- templates/home.html -->
 {% extends 'base.html' %}
     {% block content %}
-    <form action="" method="get">
-        {{ form.as_p }}
-        <input type="submit" value="Search" />
+    <form method="GET">
+        {{ filter.form }}
+        <button type="submit" class="btn btn-primary">submit</button>
     </form>
-        {% for client in object_list %}
+
+        {% for client in filter.qs %}
             <div class="post-entry">
             <h2><a href="{% url 'client_detail' client.pk %}">{{ client.first }} {{ client.last }}</a></h2>
                 <h3><a href="{% url 'edit_client' client.pk %}">Edit</a>     <a href="{% url 'delete_client' client.pk %}">Delete</a></h3>
