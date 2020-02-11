@@ -6,10 +6,17 @@ class Client(models.Model):
 
     first = models.CharField(max_length=250)
     last = models.CharField(max_length=250)
-    birth = models.DateField(blank=True, null=True)
-    age = models.PositiveSmallIntegerField()
+    birth = models.DateField(blank=True, null=True, help_text='(YYYY-MM-DD)')
+    image = models.ImageField(blank=True, upload_to='images', verbose_name='Add photo:')
 
-    image = models.ImageField(blank=True, upload_to='static/images/clients/%Y/%m/%d', help_text='150x150px', verbose_name='Ссылка картинки')
+    def age(self):
+        import datetime
+        if self.birth == None:
+            return None
+        else:
+            return int((datetime.date.today() - self.birth).days / 365.25)
+
+    age = property(age)
 
     def __str__(self):
         return '{0} {1}'.format(self.first, self.last)

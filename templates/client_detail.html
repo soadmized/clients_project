@@ -2,7 +2,14 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="post-entry">
-    <img src="{{ client.image }}">
+    <h4><a href="{% url 'edit_client' client.pk %}">Edit</a>
+        <a href="{% url 'delete_client' client.pk %}">Delete</a></h4>
+    {% if client.image %}
+    <img src="{{ client.image.url }}" width="240">
+    {% else %}
+    {% load static %}
+    <img src="{% static 'no_photo.jpg' %}" width="150">
+    {% endif %}
 <h2>{{ client.first }} {{ client.last }}</h2>
 <p>Date of birth: {{ client.birth }}</p>
 <p>Age: {{ client.age }}</p>
