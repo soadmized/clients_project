@@ -20,16 +20,14 @@ def export(request):
     font_style = xlwt.XFStyle()
     font_style.font.bold = True
 
-    columns = ['First name', 'Last name', 'Date of birth', 'Age']
+    columns = ['ID', 'First name', 'Last name', 'Date of birth']
 
     for col_num in range(len(columns)):
         ws.write(row_num, col_num, columns[col_num], font_style)
 
     # Sheet body, remaining rows
     font_style = xlwt.XFStyle()
-    rows = Client.get_deferred_fields(Client)
-    #rows = Client.objects.all().values_list('first', 'last', 'birth', 'age')
-    # rows = User.objects.all().values_list('username', 'first_name', 'last_name', 'email')
+    rows = Client.objects.all().values_list('id', 'first', 'last', 'birth')
     for row in rows:
         row_num += 1
         for col_num in range(len(row)):
