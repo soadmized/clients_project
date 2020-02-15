@@ -15,7 +15,6 @@ class Client(models.Model):
             return None
         else:
             return int((datetime.date.today() - self.birth).days / 365.25)
-
     age = property(age)
 
     def __str__(self):
